@@ -8,7 +8,10 @@ use Lightit\Backoffice\Users\App\Controllers\ListUserController;
 use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
 use Lightit\Backoffice\Employees\App\Controllers\CreateEmployeeController;
 use Lightit\Backoffice\Employees\App\Controllers\ListEmployeeController;
-
+use Lightit\Backoffice\Tasks\App\Controllers\CreateTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\UpdateTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\ListTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\GetTaskController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +29,9 @@ Route::prefix('employees')->group(function () {
         Route::get('/', ListEmployeeController::class)->name('employees.list');
     });
     
+Route::prefix('tasks')->group(function () {
+        Route::post('/', CreateTaskController::class)->name('tasks.create');
+        Route::get('/', ListTaskController::class)->name('tasks.list');
+        Route::get('/{task}', GetTaskController::class)->name('tasks.get');
+        Route::put('/{task}', UpdateTaskController::class)->name('tasks.put');
+    });
