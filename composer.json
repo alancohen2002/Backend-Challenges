@@ -21,6 +21,7 @@
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^3.0",
     "brianium/paratest": "^7.4",
+    "captainhook/captainhook": "^5.25",
     "captainhook/hook-installer": "^1.0",
     "captainhook/plugin-composer": "^5.3",
     "fakerphp/faker": "^1.23",
