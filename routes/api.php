@@ -6,6 +6,8 @@ use Lightit\Backoffice\Users\App\Controllers\DeleteUserController;
 use Lightit\Backoffice\Users\App\Controllers\GetUserController;
 use Lightit\Backoffice\Users\App\Controllers\ListUserController;
 use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
+use Lightit\Backoffice\Employees\App\Controllers\CreateEmployeeController;
+use Lightit\Backoffice\Employees\App\Controllers\ListEmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +20,9 @@ use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-/*
-|--------------------------------------------------------------------------
-| Users Routes
-|--------------------------------------------------------------------------
-*/
-Route::prefix('users')
-    ->middleware([])
-    ->group(static function () {
-        Route::get('/', ListUserController::class);
-        Route::get('/{user}', GetUserController::class)->withTrashed();
-        Route::post('/', StoreUserController::class);
-        Route::delete('/{user}', DeleteUserController::class);
+Route::prefix('employees')->group(function () {
+        Route::post('/', CreateEmployeeController::class)->name('employees.create');
+        Route::get('/', ListEmployeeController::class)->name('employees.list');
     });
+    
