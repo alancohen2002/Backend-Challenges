@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="mb-4">Task Management</h2>
-    <form id="taskForm" action="{{ route('tasks.upsert') }}" method="POST">
+    <form id="taskForm" action="{{ route('tasks.create') }}" method="POST">
         @csrf
 
         <div class="form-group">
@@ -148,7 +148,7 @@
             const taskId = formData.get('task_id');
             formData.append('id', taskId);
         }
-        fetch('{{ route('tasks.upsert') }}', {
+        fetch('{{ route('tasks.create') }}', {
             method: 'POST',
             body: formData,
             headers: {
