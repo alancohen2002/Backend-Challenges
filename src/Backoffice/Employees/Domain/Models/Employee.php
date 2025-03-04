@@ -6,13 +6,10 @@ namespace Lightit\Backoffice\Employees\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Lightit\Backoffice\Tasks\Domain\Models\Task;
 use Illuminate\Notifications\Notifiable;
-
+use Lightit\Backoffice\Tasks\Domain\Models\Task;
 
 /**
- * 
- *
  * @property int                             $id
  * @property string                          $name
  * @property string                          $email
@@ -20,6 +17,7 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Task> $tasks
  * @property-read int|null $tasks_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee query()
@@ -28,8 +26,10 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ *
  * @mixin \Eloquent
  */
 class Employee extends Model
@@ -38,6 +38,9 @@ class Employee extends Model
 
     protected $fillable = ['name', 'email'];
 
+     /**
+     * @return HasMany<Task>
+     */
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

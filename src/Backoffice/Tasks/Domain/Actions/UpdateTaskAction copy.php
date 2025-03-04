@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Tasks\Domain\Actions;
 
+use Lightit\Backoffice\Tasks\App\Notifications\TaskAssignmentNotification;
 use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
 use Lightit\Backoffice\Tasks\Domain\Models\Task;
-use Lightit\Backoffice\Tasks\App\Notifications\TaskAssignmentNotification;
-use Lightit\Backoffice\Tasks\Domain\Models;
 
 class UpdateTaskAction
 {
-    public function execute(Task $task,TaskDto $taskDto): Task
+    public function execute(Task $task, TaskDto $taskDto): Task
     {
         $task = Task::find($task);
 
         if (! $task) {
-            throw new \Exception("Task not found.");
+            throw new \Exception('Task not found.');
         }
     
         $task->update([

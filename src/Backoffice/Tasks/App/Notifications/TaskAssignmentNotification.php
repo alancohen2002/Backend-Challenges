@@ -14,11 +14,9 @@ use Lightit\Backoffice\Tasks\Domain\Models\Task;
 class TaskAssignmentNotification extends Notification implements ShouldQueue, ShouldBeEncrypted
 {
     use Queueable;
-    protected Task $task;
 
-    public function __construct(Task $task)
+    public function __construct(protected Task $task)
     {
-        $this->task = $task;
     }
 
     /**

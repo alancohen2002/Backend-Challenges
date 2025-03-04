@@ -7,8 +7,6 @@ namespace Lightit\Backoffice\Tasks\App\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
 
-
-
 class UpsertTaskRequest extends FormRequest
 {
     public const TITLE = 'title';
