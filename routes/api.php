@@ -23,6 +23,19 @@ use Lightit\Backoffice\Tasks\App\Controllers\GetTaskController;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Users Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('users')
+    ->middleware([])
+    ->group(static function () {
+        Route::get('/', ListUserController::class);
+        Route::get('/{user}', GetUserController::class)->withTrashed();
+        Route::post('/', StoreUserController::class);
+        Route::delete('/{user}', DeleteUserController::class);
+    });
 
 Route::prefix('employees')->group(function () {
         Route::post('/', CreateEmployeeController::class)->name('employees.create');
