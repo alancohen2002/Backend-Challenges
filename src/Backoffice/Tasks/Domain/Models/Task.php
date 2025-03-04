@@ -9,7 +9,7 @@ use Lightit\Backoffice\Employees\Domain\Models\Employee;
 
 class Task extends Model
 {
-    protected $fillable = ['title', 'description', 'status'];
+    protected $fillable = ['title', 'description', 'status', 'assignedUser'];
     
     public function employee(): BelongsTo
     {

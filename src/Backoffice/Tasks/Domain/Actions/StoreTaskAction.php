@@ -15,6 +15,7 @@ class StoreTaskAction
             'title' => $taskDto->getTitle(),
             'description' => $taskDto->getDescription(),
             'status' => $taskDto->getStatus(),
+            'assignedUser'  => $taskDto->getAssignedUser(),
         ]);
 
         $task->save();

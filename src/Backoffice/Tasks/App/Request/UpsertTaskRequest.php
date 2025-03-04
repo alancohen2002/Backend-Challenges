@@ -14,6 +14,8 @@ class StoreTaskRequest extends FormRequest
     public const DESCRIPTION = 'description';
 
     public const STATUS = 'status';
+    
+    public const ASSIGNED_USER = 'assignedUser';
 
     /**
      * @return array<string, mixed>
@@ -33,6 +35,7 @@ class StoreTaskRequest extends FormRequest
             title: $this->string(self::TITLE)->toString(),
             description: $this->string(self::DESCRIPTION)->toString(),
             status: $this->string(self::STATUS)->toString(),
+            assignedUser: $this->string(self::ASSIGNED_USER)->toString(),
         );
     }
 }

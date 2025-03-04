@@ -10,6 +10,8 @@ class TaskDto
         private readonly string $title,
         private readonly string $description,
         private readonly string $status,
+        private readonly string $assignedUser
+
     ) {
     }
 
@@ -26,5 +28,10 @@ class TaskDto
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getAssignedUser(): string
+    {
+        return $this->assignedUser;
     }
 }
