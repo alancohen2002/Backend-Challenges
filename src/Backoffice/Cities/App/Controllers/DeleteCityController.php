@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Users\App\Controllers;
+namespace Lightit\Backoffice\Cities\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Users\Domain\Models\User;
+use Lightit\Backoffice\Cities\Domain\Models\City;
 
-class DeleteUserController
+class DeleteCityController
 {
-    public function __invoke(User $user): JsonResponse
+    public function __invoke(City $city): JsonResponse
     {
-        $user->delete();
+        $city->delete();
 
         return responder()
             ->success()
