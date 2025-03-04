@@ -26,7 +26,7 @@ class UpdateTaskAction
             'employee_id' => $taskDto->getAssignedEmployee(),
         ]);
 
-        $task->notify(new TaskAssignmentNotification());
+        $task->employee?->notify(new TaskAssignmentNotification($task));
 
 
         return $task;

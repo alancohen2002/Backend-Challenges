@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Employees\Domain\Actions;
+namespace Lightit\Backoffice\Tasks\Domain\Actions;
 
 use Illuminate\Database\Eloquent\Collection;
 use Lightit\Backoffice\Tasks\Domain\Models\Task;
