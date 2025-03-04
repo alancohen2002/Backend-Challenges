@@ -39,7 +39,7 @@ class Employee extends Model
     protected $fillable = ['name', 'email'];
 
     /**
-     * @return HasMany<Task>
+     * @return HasMany<Task, $this>
     */
     public function tasks(): HasMany
     {

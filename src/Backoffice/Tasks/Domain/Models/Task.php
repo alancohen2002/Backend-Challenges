@@ -45,7 +45,7 @@ class Task extends Model
     protected $fillable = ['title', 'description', 'status', 'employee_id'];
     
     /**
-     * @return BelongsTo<Employee, Task>
+     * @return BelongsTo<Employee, $this>
      */
     public function employee(): BelongsTo
     {
