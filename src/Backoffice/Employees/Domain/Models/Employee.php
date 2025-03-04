@@ -38,9 +38,9 @@ class Employee extends Model
 
     protected $fillable = ['name', 'email'];
 
-     /**
+    /**
      * @return HasMany<Task>
-     */
+    */
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

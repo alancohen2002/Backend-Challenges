@@ -10,10 +10,9 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ListTaskAction
 {
-
-     /**
+    /**
      * @return Collection<int, Task>
-     */
+    */
     public function execute(): Collection
     {
         return QueryBuilder::for(Task::class)
