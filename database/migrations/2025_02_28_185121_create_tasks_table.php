@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Employee::class);
+            $table->foreignIdFor(Employee::class, 'employee_id');
             $table->string('title');
             $table->string('description');
             $table->string('status');
-            $table->string('assignedUser');
             $table->timestamps();
         });
     }

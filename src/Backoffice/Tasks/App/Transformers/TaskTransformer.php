@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Employees\App\Transformers;
+namespace Lightit\Backoffice\Tasks\App\Transformers;
 
 use Flugg\Responder\Transformers\Transformer;
 use Lightit\Backoffice\Tasks\Domain\Models\Task;
@@ -12,11 +12,11 @@ class TaskTransformer extends Transformer
     public function transform(Task $task): array
     {
         return [
-            'id' => $employee->id,
+            'id' => $task->id,
             'title' => $task->title,
             'description' => $task->description,
             'status' => $task->status,
-            'assignedUser' => $task->assignedUser,
+            'assignedEmployee' => $task->assignedEmployee,
 
         ];
     }

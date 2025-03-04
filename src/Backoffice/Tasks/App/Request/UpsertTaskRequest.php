@@ -7,7 +7,9 @@ namespace Lightit\Backoffice\Tasks\App\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
 
-class StoreTaskRequest extends FormRequest
+
+
+class UpsertTaskRequest extends FormRequest
 {
     public const TITLE = 'title';
 
@@ -15,7 +17,7 @@ class StoreTaskRequest extends FormRequest
 
     public const STATUS = 'status';
     
-    public const ASSIGNED_USER = 'assignedUser';
+    public const EMPLOYEE_ID = 'employee_id';
 
     /**
      * @return array<string, mixed>
@@ -26,6 +28,7 @@ class StoreTaskRequest extends FormRequest
             self::TITLE => ['required'],
             self::DESCRIPTION => ['required'],
             self::STATUS => ['required'],
+            self::EMPLOYEE_ID => ['required', 'exists:employees,id'],
         ];
     }
 
@@ -35,7 +38,7 @@ class StoreTaskRequest extends FormRequest
             title: $this->string(self::TITLE)->toString(),
             description: $this->string(self::DESCRIPTION)->toString(),
             status: $this->string(self::STATUS)->toString(),
-            assignedUser: $this->string(self::ASSIGNED_USER)->toString(),
+            employee_id: $this->string(self::EMPLOYEE_ID)->toString(),
         );
     }
 }

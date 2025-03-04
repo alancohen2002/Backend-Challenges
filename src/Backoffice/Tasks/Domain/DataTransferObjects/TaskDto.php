@@ -10,11 +10,11 @@ class TaskDto
         private readonly string $title,
         private readonly string $description,
         private readonly string $status,
-        private readonly string $assignedUser
-
+        private readonly string $employee_id,
     ) {
     }
 
+   
     public function getTitle(): string
     {
         return $this->title;
@@ -30,8 +30,8 @@ class TaskDto
         return $this->status;
     }
 
-    public function getAssignedUser(): string
+    public function getAssignedEmployee(): string
     {
-        return $this->assignedUser;
+        return $this->employee_id;
     }
 }
