@@ -15,8 +15,6 @@ class CreateTaskController
     {
         $task = $storeTaskAction->execute($request->toDto());
 
-      
-
         return responder()
             ->success($task, TaskTransformer::class)
             ->respond();

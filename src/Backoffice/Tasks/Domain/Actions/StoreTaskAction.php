@@ -13,15 +13,13 @@ class StoreTaskAction
 {
     public function execute(TaskDto $taskDto): Task
     {
-        $task = new Task([
+        $task = Task::create([
             'title' => $taskDto->getTitle(),
             'description' => $taskDto->getDescription(),
             'status' => $taskDto->getStatus(),
-            'employee_id'  => $taskDto->getAssignedEmployee(),
+            'employee_id' => $taskDto->getAssignedEmployee(),
         ]);
-
         
-        $task->save();
         
         $task->employee?->notify(new TaskAssignmentNotification($task));
 
