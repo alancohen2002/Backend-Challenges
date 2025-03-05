@@ -12,11 +12,7 @@ class UpdateTaskAction
 {
     public function execute(Task $task, TaskDto $taskDto): Task
     {
-
-        if (! $task) {
-            throw new \Exception('Task not found.');
-        }
-    
+        
         $task->update([
             'title' => $taskDto->getTitle(),
             'description' => $taskDto->getDescription(),
