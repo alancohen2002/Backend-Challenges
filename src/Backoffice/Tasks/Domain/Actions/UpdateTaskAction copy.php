@@ -12,7 +12,6 @@ class UpdateTaskAction
 {
     public function execute(Task $task, TaskDto $taskDto): Task
     {
-        $task = Task::find($task);
 
         if (! $task) {
             throw new \Exception('Task not found.');
