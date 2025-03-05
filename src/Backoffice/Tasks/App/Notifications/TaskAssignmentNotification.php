@@ -11,7 +11,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Lightit\Backoffice\Tasks\Domain\Models\Task;
 
-class TaskAssignmentNotification extends Notification implements ShouldQueue, ShouldBeEncrypted
+class TaskAssignmentNotification extends Notification
 {
     use Queueable;
 
