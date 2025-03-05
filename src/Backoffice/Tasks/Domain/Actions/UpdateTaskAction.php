@@ -12,7 +12,6 @@ class UpdateTaskAction
 {
     public function execute(Task $task, TaskDto $taskDto): Task
     {
-        
         $task->update([
             'title' => $taskDto->getTitle(),
             'description' => $taskDto->getDescription(),
