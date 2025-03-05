@@ -45,6 +45,8 @@ Route::prefix('employees')->group(function () {
 Route::prefix('tasks')->group(function () {
         Route::post('/', CreateTaskController::class)->name('tasks.create');
         Route::get('/', ListTaskController::class)->name('tasks.list');
-        Route::get('/{task}', GetTaskController::class)->name('tasks.get');
-        Route::put('/{task}', UpdateTaskController::class)->name('tasks.put');
+        Route::prefix('manage')->group(function () { 
+            Route::get('/{task}', GetTaskController::class)->name('tasks.get');
+            Route::put('/{task}', UpdateTaskController::class)->name('tasks.put');
+        });
     });
