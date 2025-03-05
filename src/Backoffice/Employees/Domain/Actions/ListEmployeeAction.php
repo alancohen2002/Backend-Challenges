@@ -11,7 +11,7 @@ use Lightit\Backoffice\Employees\Domain\Models\Employee;
 class ListEmployeeAction
 {
     /**
-     * @return Collection<int, Model>
+     * @return Collection<int, Employee>
      */
     public function execute(): Collection
     {

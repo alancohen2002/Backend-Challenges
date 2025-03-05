@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Tasks\App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeEncrypted;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Lightit\Backoffice\Tasks\Domain\Models\Task;
