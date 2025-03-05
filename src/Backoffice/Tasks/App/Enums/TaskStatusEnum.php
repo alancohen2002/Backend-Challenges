@@ -1,3 +1,7 @@
+<?php
+
+declare(strict_types=1);
+
 namespace Lightit\Backoffice\Tasks\App\Enums;
 
 enum TaskStatusEnum: string

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Tasks\Domain\DataTransferObjects;
 
+use Lightit\Backoffice\Tasks\App\Enums\TaskStatusEnum;
+
 class TaskDto
 {
     public function __construct(
         private readonly string $title,
         private readonly string $description,
-        private readonly string $status,
+        private readonly TaskStatusEnum $status,
         private readonly string $employee_id,
     ) {
     }
@@ -24,7 +26,7 @@ class TaskDto
         return $this->description;
     }
 
-    public function getStatus(): string
+    public function getStatus(): TaskStatusEnum
     {
         return $this->status;
     }

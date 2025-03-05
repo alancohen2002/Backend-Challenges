@@ -25,8 +25,8 @@ class UpsertTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::TITLE => ['required','string'],
-            self::DESCRIPTION => ['required','string'],
+            self::TITLE => ['required', 'string'],
+            self::DESCRIPTION => ['required', 'string'],
             self::STATUS => ['required', Rule::enum(TaskStatusEnum::class)],
             self::EMPLOYEE_ID => ['required', 'exists:employees,id'],
         ];
@@ -37,7 +37,8 @@ class UpsertTaskRequest extends FormRequest
         return new TaskDto(
             title: $this->string(self::TITLE)->toString(),
             description: $this->string(self::DESCRIPTION)->toString(),
-            status: $this->string(self::STATUS)->toString(),
+            /** @var TaskStatusEnum $status */
+            status: $this->enum(self::STATUS, TaskStatusEnum::class),
             employee_id: $this->string(self::EMPLOYEE_ID)->toString(),
         );
     }
