@@ -7,7 +7,6 @@ namespace Lightit\Backoffice\Employees\Domain\Actions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Lightit\Backoffice\Employees\Domain\Models\Employee;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class ListEmployeeAction
 {
