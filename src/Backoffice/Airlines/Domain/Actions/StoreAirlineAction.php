@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Airlines\Domain\Actions;
 
-use Lightit\Backoffice\Airlines\Domain\DataTransferObjects\airlineDto;
+use Lightit\Backoffice\Airlines\Domain\DataTransferObjects\AirlineDto;
 use Lightit\Backoffice\Airlines\Domain\Models\Airline;
 
 class StoreAirlineAction
@@ -16,7 +16,5 @@ class StoreAirlineAction
             'number_of_incoming_flights' => $airlineDto->getDescription(),
             'number_of_outgoing_flights' => $airlineDto->getNumberOfFlights(),
         ]);
-
-       
     }
 }

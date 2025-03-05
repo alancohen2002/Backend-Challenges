@@ -11,12 +11,6 @@ class UpdateAirlineAction
 {
     public function execute(Airline $airline, AirlineDto $airlineDto): Airline
     {
-        $airline = Airline::find($airline);
-
-        if (! $airline) {
-            throw new \Exception('Airline not found.');
-        }
-
         $airline->update([
             'name' => $airlineDto->getName(),
             'description' => $airlineDto->getDescription(),

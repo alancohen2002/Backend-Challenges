@@ -11,12 +11,6 @@ class UpdateCityAction
 {
     public function execute(City $city, CityDto $cityDto): City
     {
-        $city = City::find($city);
-
-        if (! $city) {
-            throw new \Exception('City not found.');
-        }
-
         $city->update([
             'name' => $cityDto->getName(),
             'number_of_incoming_flights' => $cityDto->getNumberOfIncomingFlights(),

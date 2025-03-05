@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Cities\Domain\Actions;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Lightit\Backoffice\Cities\Domain\Models\City;
-use Spatie\QueryBuilder\QueryBuilder;
-use Illuminate\Contracts\Pagination\Paginator;
 
 class ListCityAction
 {
@@ -17,8 +15,8 @@ class ListCityAction
      */
     public function execute(): Paginator
     {
-        $sortBy = request()->input('sort_by', 'id'); 
-        $sortDirection = request()->input('sort_direction', 'asc'); 
+        $sortBy = request()->input('sort_by', 'id');
+        $sortDirection = request()->input('sort_direction', 'asc');
         $airlineId = request()->input('airline_id');
 
         $query = City::query();
@@ -34,7 +32,3 @@ class ListCityAction
         return $query->simplePaginate(10);
     }
 }
-
-
-    
-    

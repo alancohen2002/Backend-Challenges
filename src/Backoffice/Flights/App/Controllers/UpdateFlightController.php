@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Airlines\App\Controllers;
+namespace Lightit\Backoffice\Flights\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Airlines\App\Request\UpsertAirlineRequest;
-use Lightit\Backoffice\Airlines\App\Transformers\AirlineTransformer;
-use Lightit\Backoffice\Airlines\Domain\Actions\UpdateAirlineAction;
-use Lightit\Backoffice\Airlines\Domain\Models\Airline;
+use Lightit\Backoffice\Flights\Domain\Models\Flight;
 
-class UpdateAirlineController
+class UpdateFlightController
 {
     public function __invoke(
-        Airline $airline,
+        Flight $airline,
         UpsertAirlineRequest $request,
         UpdateAirlineAction $updateAirlineAction,
     ): JsonResponse {

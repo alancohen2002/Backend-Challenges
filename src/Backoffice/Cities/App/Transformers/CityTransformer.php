@@ -17,8 +17,8 @@ class CityTransformer extends Transformer
         return [
             'id' => $city->id,
             'name' => $city->name,
-            'number_of_ingoing_flights' => $city->email,
-            'number_of_outgoing_flights' => $city->email,
+            'number_of_incoming_flights' => $city->number_of_incoming_flights,
+            'number_of_outgoing_flights' => $city->number_of_outgoing_flights,
         ];
     }
 }

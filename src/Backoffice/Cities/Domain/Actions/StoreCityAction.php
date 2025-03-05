@@ -16,7 +16,5 @@ class StoreCityAction
             'number_of_incoming_flights' => $cityDto->getNumberOfIncomingFlights(),
             'number_of_outgoing_flights' => $cityDto->getNumberOfOutgoingFlights(),
         ]);
-
-       
     }
 }

@@ -19,6 +19,12 @@ use Lightit\Backoffice\Airlines\App\Controllers\CreateAirlineController;
 use Lightit\Backoffice\Airlines\App\Controllers\UpdateAirlineController;
 use Lightit\Backoffice\Airlines\App\Controllers\DeleteAirlineController;
 
+use Lightit\Backoffice\Flights\App\Controllers\ListFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\GetFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\CreateFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\UpdateFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\DeleteFlightController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,4 +71,13 @@ Route::prefix('airlines')
         Route::post('/', CreateAirlineController::class);
         Route::put('/{airline}', UpdateAirlineController::class);
         Route::delete('/{airline}', DeleteAirlineController::class);
+    });
+
+Route::prefix('flights')
+    ->group(static function () {
+        Route::get('/', ListFlightController::class);
+        Route::get('/{flight}', GetFlightController::class)->withTrashed();
+        Route::post('/', CreateFlightController::class);
+        Route::put('/{flight}', UpdateFlightController::class);
+        Route::delete('/{flight}', DeleteFlightController::class);
     });

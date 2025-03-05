@@ -18,7 +18,7 @@ class AirlineTransformer extends Transformer
             'id' => $airline->id,
             'name' => $airline->name,
             'description' => $airline->description,
-            'number_of_outgoing_flights' => $airline->number_of_flights,
+            'number_of_flights' => $airline->number_of_flights,
         ];
     }
 }
