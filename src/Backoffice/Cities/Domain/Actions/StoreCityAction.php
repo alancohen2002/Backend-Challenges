@@ -11,15 +11,12 @@ class StoreCityAction
 {
     public function execute(CityDto $cityDto): City
     {
-        $city = new City([
+        return City::create([
             'name' => $cityDto->getName(),
             'number_of_incoming_flights' => $cityDto->getNumberOfIncomingFlights(),
             'number_of_outgoing_flights' => $cityDto->getNumberOfOutgoingFlights(),
         ]);
 
-        $city->save();
-
-
-        return $city;
+       
     }
 }

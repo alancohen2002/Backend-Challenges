@@ -10,17 +10,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('airlines', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('number_of_incoming_flights'); 
-            $table->integer('number_of_outgoing_flights');
+            $table->string('description');
+            $table->integer('number_of_flights');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('airlines');
     }
 };

@@ -6,6 +6,7 @@ namespace Lightit\Backoffice\Cities\App\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Lightit\Backoffice\Cities\Domain\DataTransferObjects\CityDto;
+use Illuminate\Validation\Rule;
 
 class UpsertCityRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class UpsertCityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::NAME => ['required'],
+            self::NAME => ['required',Rule::unique('cities')],
             self::NUMBER_OF_INCOMING_FLIGHTS => [],
             self::NUMBER_OF_OUTGOING_FLIGHTS => [],
             

@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Cities\Domain\Actions;
+namespace Lightit\Backoffice\Airlines\Domain\Actions;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Lightit\Backoffice\Cities\Domain\Models\City;
+use Lightit\Backoffice\Airlines\Domain\Models\Airline;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class ListCityAction
+
+class ListAirlineAction
 {
     /**
      * @return Paginator<Model>
@@ -19,22 +20,18 @@ class ListCityAction
     {
         $sortBy = request()->input('sort_by', 'id'); 
         $sortDirection = request()->input('sort_direction', 'asc'); 
-        $airlineId = request()->input('airline_id');
+        $cityId = request()->input('city_id');
 
-        $query = City::query();
+        $query = Airline::query();
 
         $query->orderBy($sortBy, $sortDirection);
 
-        if ($airlineId) {
-            $query->whereHas('airlines', function ($query) use ($airlineId) {
-                $query->where('airline_id', $airlineId);
+        if ($cityId) {
+            $query->whereHas('cities', function ($query) use ($cityId) {
+                $query->where('city_id', $cityId);
             });
         }
 
         return $query->simplePaginate(10);
     }
 }
-
-
-    
-    
