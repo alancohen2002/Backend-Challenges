@@ -6,6 +6,8 @@ namespace Lightit\Backoffice\Tasks\App\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
+use Illuminate\Validation\Rule;
+use Lightit\Backoffice\Tasks\App\Enums\TaskStatusEnum;
 
 class UpsertTaskRequest extends FormRequest
 {
@@ -25,7 +27,7 @@ class UpsertTaskRequest extends FormRequest
         return [
             self::TITLE => ['required'],
             self::DESCRIPTION => ['required'],
-            self::STATUS => ['required'],
+            self::STATUS => ['required', Rule::enum(TaskStatusEnum::class)],
             self::EMPLOYEE_ID => ['required', 'exists:employees,id'],
         ];
     }
