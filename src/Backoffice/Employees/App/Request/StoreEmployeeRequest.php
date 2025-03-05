@@ -21,7 +21,7 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::NAME => ['required'],
+            self::NAME => ['required','string'],
             self::EMAIL => ['required', Rule::email()->strict(), Rule::unique((new Employee())->getTable())],
         ];
     }

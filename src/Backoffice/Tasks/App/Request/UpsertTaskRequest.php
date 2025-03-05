@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Tasks\App\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
 use Illuminate\Validation\Rule;
 use Lightit\Backoffice\Tasks\App\Enums\TaskStatusEnum;
+use Lightit\Backoffice\Tasks\Domain\DataTransferObjects\TaskDto;
 
 class UpsertTaskRequest extends FormRequest
 {
@@ -25,8 +25,8 @@ class UpsertTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::TITLE => ['required'],
-            self::DESCRIPTION => ['required'],
+            self::TITLE => ['required','string'],
+            self::DESCRIPTION => ['required','string'],
             self::STATUS => ['required', Rule::enum(TaskStatusEnum::class)],
             self::EMPLOYEE_ID => ['required', 'exists:employees,id'],
         ];
