@@ -35,11 +35,28 @@ use Lightit\Backoffice\Cities\Domain\Models\City;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereArrivalCityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereDepartureCityId($value)
  *
+ * @property string $departure_date
+ * @property string $arrival_date
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereArrivalDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereDepartureDate($value)
+ *
  * @mixin \Eloquent
  */
 class Flight extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'airline_id',
+        'departure_city_id',
+        'arrival_city_id',
+        'departure_date',
+        'arrival_date',
+    ];
+
+    protected $casts = [
+        'departure_date' => 'datetime',
+        'arrival_date' => 'datetime',
+    ];
 
     /**
      * @return BelongsTo<Airline, $this>

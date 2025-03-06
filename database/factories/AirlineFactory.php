@@ -15,7 +15,9 @@ class AirlineFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company, 
+            'name' => $this->faker->company,
+            'description' => $this->faker->company, 
+            'number_of_flights' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

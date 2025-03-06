@@ -13,8 +13,8 @@ class StoreAirlineAction
     {
         return Airline::create([
             'name' => $airlineDto->getName(),
-            'number_of_incoming_flights' => $airlineDto->getDescription(),
-            'number_of_outgoing_flights' => $airlineDto->getNumberOfFlights(),
+            'description' => $airlineDto->getDescription(),
+            'number_of_flights' => $airlineDto->getNumberOfFlights(),
         ]);
     }
 }

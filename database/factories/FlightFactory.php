@@ -20,9 +20,8 @@ class FlightFactory extends Factory
             'airline_id' => AirlineFactory::new()->create(),
             'departure_city_id' => CityFactory::new()->create(),
             'arrival_city_id' => CityFactory::new()->create(),
-            'departure_time' => $this->faker->dateTimeBetween('now', '+1 month'),
-            'arrival_time' => $this->faker->dateTimeBetween('+1 month', '+2 months'),
-            'price' => $this->faker->randomFloat(2, 100, 1500),
+            'departure_date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'arrival_date' => $this->faker->dateTimeBetween('+1 month', '+2 months'),
         ];
     }
 }

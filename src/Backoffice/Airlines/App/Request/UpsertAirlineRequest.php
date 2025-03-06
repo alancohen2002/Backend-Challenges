@@ -23,8 +23,8 @@ class UpsertAirlineRequest extends FormRequest
     {
         return [
             self::NAME => ['required', Rule::unique('airlines')],
-            self::DESCRIPTION => [],
-            self::NUMBER_OF_FLIGHTS => [],
+            self::DESCRIPTION => ['required', 'string'],
+            self::NUMBER_OF_FLIGHTS => ['numeric'],
             
         ];
     }

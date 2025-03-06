@@ -11,10 +11,18 @@ class StoreFlightAction
 {
     public function execute(FlightDto $flightDto): Flight
     {
-        return Flight::create([
-            'airline' => $flightDto->getAirline(),
-            'departure_city' => $flightDto->getDepartureCity(),
-            'arrival_city' => $flightDto->getArrivalCity(),
+        $flight = Flight::create([
+            'airline_id' => $flightDto->getAirline(),
+            'departure_city_id' => $flightDto->getDepartureCity(),
+            'arrival_city_id' => $flightDto->getArrivalCity(),
+            'departure_date' => $flightDto->getDepartureDate(),
+            'arrival_date' => $flightDto->getArrivalDate(),
         ]);
+        
+        $flight->airline->increment('number_of_flights');
+        $flight->departureCity->increment('number_of_outgoing_flights');
+        $flight->arrivalCity->increment('number_of_incoming_flights');
+        
+        return $flight;
     }
 }
