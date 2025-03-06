@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Employee::class, 'employee_id');
+            $table->foreignIdFor(Employee::class, 'employee_id')->onDelete('cascade');
             $table->string('title');
             $table->string('description');
             $table->string('status');
