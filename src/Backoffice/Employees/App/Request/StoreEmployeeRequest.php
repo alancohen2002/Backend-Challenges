@@ -15,9 +15,7 @@ class StoreEmployeeRequest extends FormRequest
 
     public const EMAIL = 'email';
 
-    /**
-     * @return array<string, mixed>
-     */
+ 
     public function rules(): array
     {
         return [

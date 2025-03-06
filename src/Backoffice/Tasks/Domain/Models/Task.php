@@ -42,7 +42,7 @@ class Task extends Model
 {
     use Notifiable;
     
-    protected $fillable = ['title', 'description', 'status', 'employee_id'];
+    protected $guarded = ['id'];
     
     /**
      * @return BelongsTo<Employee, $this>

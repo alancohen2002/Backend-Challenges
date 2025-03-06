@@ -21,7 +21,6 @@ class UpdateTaskAction
 
         $task->employee?->notify(new TaskAssignmentNotification($task));
 
-
         return $task;
     }
 }
