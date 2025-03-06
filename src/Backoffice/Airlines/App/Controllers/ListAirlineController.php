@@ -15,6 +15,7 @@ class ListAirlineController
         ListAirlineAction $action,
         SortQueryDTO $sortQuery,
     ): JsonResponse {
+        
         $airlines = $action->execute($sortQuery);
 
         return responder()
