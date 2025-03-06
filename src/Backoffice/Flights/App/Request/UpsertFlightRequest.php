@@ -21,9 +21,9 @@ class UpsertFlightRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::AIRLINE => ['required', 'exists:airlines,id'],
-            self::DEPARTURE_CITY => ['required', 'exists:cities,id'],
-            self::ARRIVAL_CITY => ['required', 'exists:cities,id'],
+            self::AIRLINE => ['required', 'numeric', 'exists:airlines,id'],
+            self::DEPARTURE_CITY => ['required', 'numeric', 'exists:cities,id'],
+            self::ARRIVAL_CITY => ['required', 'numeric', 'exists:cities,id'],
             
         ];
     }
@@ -31,9 +31,9 @@ class UpsertFlightRequest extends FormRequest
     public function toDto(): FlightDto
     {
         return new FlightDto(
-            airline: $this->string(self::AIRLINE)->toString(),
-            departure_city: $this->string(self::DEPARTURE_CITY)->toString(),
-            arrival_city: $this->string(self::ARRIVAL_CITY)->toString(),
+            airline: $this->integer(self::AIRLINE),
+            departure_city: $this->integer(self::DEPARTURE_CITY),
+            arrival_city: $this->integer(self::ARRIVAL_CITY),
         );
     }
 }

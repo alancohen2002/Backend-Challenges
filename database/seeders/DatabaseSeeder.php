@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Lightit\Backoffice\Airlines\Domain\Models\Airline;
-use Lightit\Backoffice\Cities\Domain\Models\City;
-use Lightit\Backoffice\Flights\Domain\Models\Flight;
+use Database\Factories\AirlineFactory;
+use Database\Factories\CityFactory;
+use Database\Factories\FlightFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Airline::factory()->count(5)->create();
+        AirlineFactory::new()->count(5)->create();
 
-        City::factory()->count(10)->create();
+        CityFactory::new()->count(10)->create();
 
-        Flight::factory()->count(20)->create();
+        FlightFactory::new()->count(20)->create();
     }
 }

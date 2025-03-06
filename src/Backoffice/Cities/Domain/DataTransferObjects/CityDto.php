@@ -8,8 +8,8 @@ class CityDto
 {
     public function __construct(
         private readonly string $name,
-        private readonly string $number_of_incoming_flights,
-        private readonly string $number_of_outgoing_flights,
+        private readonly int $number_of_incoming_flights,
+        private readonly int $number_of_outgoing_flights,
     ) {
     }
    
@@ -18,12 +18,12 @@ class CityDto
         return $this->name;
     }
 
-    public function getNumberOfIncomingFlights(): string
+    public function getNumberOfIncomingFlights(): int
     {
         return $this->number_of_incoming_flights;
     }
 
-    public function getNumberOfOutgoingFlights(): string
+    public function getNumberOfOutgoingFlights(): int
     {
         return $this->number_of_outgoing_flights;
     }

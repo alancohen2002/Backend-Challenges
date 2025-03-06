@@ -5,26 +5,40 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Cities\Domain\Actions;
 
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Model;
+use Lightit\Backoffice\Cities\Domain\DataTransferObjects\SortQueryDto;
 use Lightit\Backoffice\Cities\Domain\Models\City;
 
 class ListCityAction
 {
     /**
-     * @return Paginator<Model>
+     * @return Paginator<City>
      */
-    public function execute(): Paginator
+    public function execute(SortQueryDto $request): Paginator
     {
-        $sortBy = request()->input('sort_by', 'id');
-        $sortDirection = request()->input('sort_direction', 'asc');
-        $airlineId = request()->input('airline_id');
+        $name = $request->getSortByName();
+        $id = $request->getSortById();
+        $airlineId = $request->getSortByAirlineId();
+        $sortDirection = $request->getSortDirection();
 
         $query = City::query();
 
-        $query->orderBy($sortBy, $sortDirection);
+        if (! in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+            $sortDirection = 'asc';
+        }
 
-        if ($airlineId) {
-            $query->whereHas('airlines', function ($query) use ($airlineId) {
+        if ($name) {
+            $query->orderBy('name', $sortDirection);
+        }
+
+        if ($id) {
+            $query->orderBy('id', $sortDirection);
+        }
+
+        if ($airlineId != null) {
+            $query->whereHas('flightsAsDepartureCity', function ($query) use ($airlineId) {
+                $query->where('airline_id', $airlineId);
+            })
+            ->orWhereHas('flightsAsArrivalCity', function ($query) use ($airlineId) {
                 $query->where('airline_id', $airlineId);
             });
         }

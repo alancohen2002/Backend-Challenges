@@ -7,23 +7,23 @@ namespace Lightit\Backoffice\Flights\Domain\DataTransferObjects;
 class FlightDto
 {
     public function __construct(
-        private readonly string $airline,
-        private readonly string $departure_city,
-        private readonly string $arrival_city,
+        private readonly int $airline,
+        private readonly int $departure_city,
+        private readonly int $arrival_city,
     ) {
     }
    
-    public function getAirline(): string
+    public function getAirline(): int
     {
         return $this->airline;
     }
 
-    public function getDepartureCity(): string
+    public function getDepartureCity(): int
     {
         return $this->departure_city;
     }
 
-    public function getArrivalCity(): string
+    public function getArrivalCity(): int
     {
         return $this->arrival_city;
     }

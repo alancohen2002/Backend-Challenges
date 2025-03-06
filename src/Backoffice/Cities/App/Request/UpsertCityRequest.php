@@ -23,8 +23,8 @@ class UpsertCityRequest extends FormRequest
     {
         return [
             self::NAME => ['required', Rule::unique('cities')],
-            self::NUMBER_OF_INCOMING_FLIGHTS => [],
-            self::NUMBER_OF_OUTGOING_FLIGHTS => [],
+            self::NUMBER_OF_INCOMING_FLIGHTS => ['numeric'],
+            self::NUMBER_OF_OUTGOING_FLIGHTS => ['numeric'],
             
         ];
     }
@@ -33,8 +33,8 @@ class UpsertCityRequest extends FormRequest
     {
         return new CityDto(
             name: $this->string(self::NAME)->toString(),
-            number_of_incoming_flights: $this->int(self::NUMBER_OF_INCOMING_FLIGHTS),
-            number_of_outgoing_flights: $this->int(self::NUMBER_OF_OUTGOING_FLIGHTS),
+            number_of_incoming_flights: $this->integer(self::NUMBER_OF_INCOMING_FLIGHTS),
+            number_of_outgoing_flights: $this->integer(self::NUMBER_OF_OUTGOING_FLIGHTS),
         );
     }
 }

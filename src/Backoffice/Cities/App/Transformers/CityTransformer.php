@@ -10,7 +10,7 @@ use Lightit\Backoffice\Cities\Domain\Models\City;
 class CityTransformer extends Transformer
 {
     /**
-     * @return array{id: int, name: string, email: string}
+     * @return array{id: int, name: string, number_of_incoming_flights: int, number_of_outgoing_flights: int}
      */
     public function transform(City $city): array
     {

@@ -27,6 +27,14 @@ use Lightit\Backoffice\Cities\Domain\Models\City;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereUpdatedAt($value)
  *
+ * @property int $departure_city_id
+ * @property int $arrival_city_id
+ * @property-read City $arrivalCity
+ * @property-read City $departureCity
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereArrivalCityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Flight whereDepartureCityId($value)
+ *
  * @mixin \Eloquent
  */
 class Flight extends Model
@@ -44,8 +52,16 @@ class Flight extends Model
     /**
      * @return BelongsTo<City, $this>
     */
-    public function city(): BelongsTo
+    public function departureCity(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'departure_city_id');
+    }
+
+    /**
+     * @return BelongsTo<City, $this>
+    */
+    public function arrivalCity(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'arrival_city_id');
     }
 }

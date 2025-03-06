@@ -34,7 +34,7 @@ class UpsertAirlineRequest extends FormRequest
         return new AirlineDto(
             name: $this->string(self::NAME)->toString(),
             description: $this->string(self::DESCRIPTION)->toString(),
-            number_of_flights: $this->int(self::NUMBER_OF_FLIGHTS),
+            number_of_flights: $this->integer(self::NUMBER_OF_FLIGHTS),
         );
     }
 }

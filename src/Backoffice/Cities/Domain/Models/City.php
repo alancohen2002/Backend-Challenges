@@ -32,6 +32,10 @@ use Lightit\Backoffice\Flights\Domain\Models\Flight;
  * @property-read int|null $airlines_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Flight> $flights
  * @property-read int|null $flights_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Flight> $flightsAsArrivalCity
+ * @property-read int|null $flights_as_arrival_city_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Flight> $flightsAsDepartureCity
+ * @property-read int|null $flights_as_departure_city_count
  *
  * @mixin \Eloquent
  */
@@ -48,10 +52,18 @@ class City extends Model
     }
 
     /**
-     * @return BelongsToMany<Flight, $this>
+     * @return HasMany<Flight, $this>
     */
-    public function flights(): HasMany
+    public function flightsAsDepartureCity(): HasMany
     {
-        return $this->hasMany(Flight::class);
+        return $this->hasMany(Flight::class, 'departure_city_id');
+    }
+
+    /**
+     * @return HasMany<Flight, $this>
+    */
+    public function flightsAsArrivalCity(): HasMany
+    {
+        return $this->hasMany(Flight::class, 'arrival_city_id');
     }
 }
