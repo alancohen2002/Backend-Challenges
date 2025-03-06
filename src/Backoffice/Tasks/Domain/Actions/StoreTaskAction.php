@@ -20,7 +20,6 @@ class StoreTaskAction
             'employee_id' => $taskDto->getAssignedEmployee(),
         ]);
         
-        
         $task->employee?->notify(new TaskAssignmentNotification($task));
 
         return $task;

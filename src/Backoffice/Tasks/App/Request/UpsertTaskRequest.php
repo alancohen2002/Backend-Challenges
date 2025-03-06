@@ -19,7 +19,6 @@ class UpsertTaskRequest extends FormRequest
     
     public const EMPLOYEE_ID = 'employee_id';
 
-   
     public function rules(): array
     {
         return [
