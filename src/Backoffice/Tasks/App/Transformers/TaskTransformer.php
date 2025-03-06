@@ -17,7 +17,6 @@ class TaskTransformer extends Transformer
             'description' => $task->description,
             'status' => $task->status,
             'assignedEmployee' => $task->employee_id,
-
         ];
     }
 }
