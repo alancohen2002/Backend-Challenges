@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Airlines\App\Request;
+namespace Lightit\Backoffice\Airlines\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -16,9 +16,6 @@ class UpsertAirlineRequest extends FormRequest
 
     public const NUMBER_OF_FLIGHTS = 'number_of_flights';
 
-    /**
-     * @return array<string, mixed>
-     */
     public function rules(): array
     {
         return [

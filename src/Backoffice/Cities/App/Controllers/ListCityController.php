@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Cities\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Lightit\Backoffice\Cities\App\Requests\ListCitiesRequest;
 use Lightit\Backoffice\Cities\App\Transformers\CityTransformer;
 use Lightit\Backoffice\Cities\Domain\Actions\ListCityAction;
-use Lightit\Backoffice\Cities\Domain\DataTransferObjects\SortQueryDto;
 
 class ListCityController
 {
     public function __invoke(
         ListCityAction $action,
-        SortQueryDTO $sortQuery,
+        ListCitiesRequest $request,
     ): JsonResponse {
-        $cities = $action->execute($sortQuery);
+        $cities = $action->execute($request->toDto());
 
         return responder()
             ->success($cities, CityTransformer::class)

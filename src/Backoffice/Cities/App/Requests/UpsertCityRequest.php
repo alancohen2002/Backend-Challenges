@@ -16,9 +16,6 @@ class UpsertCityRequest extends FormRequest
 
     public const NUMBER_OF_OUTGOING_FLIGHTS = 'number_of_outgoing_flights';
 
-    /**
-     * @return array<string, mixed>
-     */
     public function rules(): array
     {
         return [

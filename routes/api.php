@@ -58,26 +58,32 @@ Route::prefix('users')
 Route::prefix('cities')
     ->group(static function () {
         Route::get('/', ListCityController::class);
-        Route::get('/{city}', GetCityController::class)->withTrashed();
+        Route::prefix('{city}')->group(function () { 
+            Route::get('/', GetCityController::class)->withTrashed();
+            Route::put('/', UpdateCityController::class);
+            Route::delete('/', DeleteCityController::class);
+        });
         Route::post('/', CreateCityController::class);
-        Route::put('/{city}', UpdateCityController::class);
-        Route::delete('/{city}', DeleteCityController::class);
     });
 
 Route::prefix('airlines')
     ->group(static function () {
         Route::get('/', ListAirlineController::class);
-        Route::get('/{airline}', GetAirlineController::class)->withTrashed();
-        Route::post('/', CreateAirlineController::class);
-        Route::put('/{airline}', UpdateAirlineController::class);
-        Route::delete('/{airline}', DeleteAirlineController::class);
+        Route::prefix('{airline}')->group(function () {
+            Route::get('/', GetAirlineController::class)->withTrashed();
+            Route::put('/', UpdateAirlineController::class);
+            Route::delete('/', DeleteAirlineController::class);
+        });
+        Route::post('/', CreateAirlineController::class);    
     });
 
 Route::prefix('flights')
     ->group(static function () {
         Route::get('/', ListFlightController::class);
-        Route::get('/{flight}', GetFlightController::class)->withTrashed();
-        Route::post('/', CreateFlightController::class);
-        Route::put('/{flight}', UpdateFlightController::class);
-        Route::delete('/{flight}', DeleteFlightController::class);
+        Route::prefix('{airline}')->group(function () {
+            Route::get('/', GetFlightController::class)->withTrashed();
+            Route::put('/', UpdateFlightController::class);
+            Route::delete('/', DeleteFlightController::class);
+        });        
+        Route::post('/', CreateFlightController::class);   
     });

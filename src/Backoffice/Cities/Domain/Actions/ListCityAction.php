@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Cities\Domain\Actions;
 
 use Illuminate\Contracts\Pagination\Paginator;
-use Lightit\Backoffice\Cities\Domain\DataTransferObjects\SortQueryDto;
+use Lightit\Backoffice\Cities\Domain\DataTransferObjects\ListCityData;
 use Lightit\Backoffice\Cities\Domain\Models\City;
 
 class ListCityAction
@@ -13,25 +13,16 @@ class ListCityAction
     /**
      * @return Paginator<City>
      */
-    public function execute(SortQueryDto $request): Paginator
+    public function execute(ListCityData $requestData): Paginator
     {
-        $name = $request->getSortByName();
-        $id = $request->getSortById();
-        $airlineId = $request->getSortByAirlineId();
-        $sortDirection = $request->getSortDirection();
+        $sortBy = $requestData->sortBy;
+        $airlineId = $requestData->airlineId;
+        $sortDirection = ! empty($requestData->sortDirection) ? $requestData->sortDirection : 'asc';
 
         $query = City::query();
 
-        if (! in_array(strtolower($sortDirection), ['asc', 'desc'])) {
-            $sortDirection = 'asc';
-        }
-
-        if ($name) {
-            $query->orderBy('name', $sortDirection);
-        }
-
-        if ($id) {
-            $query->orderBy('id', $sortDirection);
+        if ($sortBy != null) {
+            $query->orderBy($sortBy, $sortDirection);
         }
 
         if ($airlineId != null) {

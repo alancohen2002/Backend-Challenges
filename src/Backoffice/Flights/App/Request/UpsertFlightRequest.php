@@ -20,15 +20,12 @@ class UpsertFlightRequest extends FormRequest
 
     public const ARRIVAL_DATE = 'arrival_date';
 
-    /**
-     * @return array<string, mixed>
-     */
     public function rules(): array
     {
         return [
-            self::AIRLINE => ['required', 'numeric', 'exists:airlines,id'],
-            self::DEPARTURE_CITY => ['required', 'numeric', 'exists:cities,id'],
-            self::ARRIVAL_CITY => ['required', 'numeric', 'exists:cities,id'],
+            self::AIRLINE => ['required', 'integer', 'exists:airlines,id'],
+            self::DEPARTURE_CITY => ['required', 'integer', 'exists:cities,id'],
+            self::ARRIVAL_CITY => ['required', 'integer', 'exists:cities,id'],
             self::DEPARTURE_DATE => ['required', 'date', ],
             self::ARRIVAL_DATE => ['required', 'date'],
             
