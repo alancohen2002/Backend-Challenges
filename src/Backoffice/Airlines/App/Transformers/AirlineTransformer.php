@@ -19,6 +19,7 @@ class AirlineTransformer extends Transformer
             'name' => $airline->name,
             'description' => $airline->description,
             'number_of_flights' => $airline->number_of_flights,
+            'operating_cities' => $airline->cities->pluck('name'),
         ];
     }
 }

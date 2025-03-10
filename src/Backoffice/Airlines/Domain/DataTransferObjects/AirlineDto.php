@@ -10,6 +10,7 @@ class AirlineDto
         private readonly string $name,
         private readonly string $description,
         private readonly int $number_of_flights,
+        private readonly array $enabled_cities,
     ) {
     }
    
@@ -26,5 +27,10 @@ class AirlineDto
     public function getNumberOfFlights(): int
     {
         return $this->number_of_flights;
+    }
+
+    public function getEnabledCities(): array
+    {
+        return $this->enabled_cities;
     }
 }

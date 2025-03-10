@@ -6,6 +6,8 @@ namespace Lightit\Backoffice\Flights\App\Request;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Lightit\Backoffice\Airlines\Domain\Models\Airline;
+use Lightit\Backoffice\Cities\Domain\Models\City;
 use Lightit\Backoffice\Flights\Domain\DataTransferObjects\FlightDto;
 
 class UpsertFlightRequest extends FormRequest
@@ -24,8 +26,32 @@ class UpsertFlightRequest extends FormRequest
     {
         return [
             self::AIRLINE => ['required', 'integer', 'exists:airlines,id'],
-            self::DEPARTURE_CITY => ['required', 'integer', 'exists:cities,id'],
-            self::ARRIVAL_CITY => ['required', 'integer', 'exists:cities,id'],
+            self::DEPARTURE_CITY => [
+                'required',
+                'integer',
+                'exists:cities,id',
+                function ($attribute, $value, $fail) {
+                    $airline = Airline::findOrFail($this->input(self::AIRLINE)); 
+                    $departureCity = City::findOrFail($this->input(self::DEPARTURE_CITY)); 
+
+                    if (!$airline->cities->contains($departureCity)) {
+                        $fail('The airline does not operate in the departure city.');
+                    }
+                },
+            ],
+            self::ARRIVAL_CITY => [
+                'required',
+                'integer',
+                'exists:cities,id',
+                function ($attribute, $value, $fail) {
+                    $airline = Airline::findOrFail($this->input(self::AIRLINE)); 
+                    $arrivalCity = City::findOrFail($this->input(self::ARRIVAL_CITY));
+
+                    if (!$airline->cities->contains($arrivalCity)) {
+                        $fail('The airline does not operate in the arrival city.');
+                    }
+                },
+            ],
             self::DEPARTURE_DATE => ['required', 'date', ],
             self::ARRIVAL_DATE => ['required', 'date'],
             

@@ -16,10 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        AirlineFactory::new()->count(5)->create();
+        $airlines = AirlineFactory::new()->count(5)->create();
 
-        CityFactory::new()->count(10)->create();
+        $cities = CityFactory::new()->count(5)->create();
 
-        FlightFactory::new()->count(20)->create();
+        $airlines->each(function ($airline) use ($cities) {
+            $randomCities = $cities->random(rand(1, 3));
+            
+            $airline->cities()->attach($randomCities);
+        });
+
+        FlightFactory::new()->count(5)->create();
     }
 }

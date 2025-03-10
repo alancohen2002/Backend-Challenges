@@ -17,6 +17,8 @@ class UpdateAirlineAction
             'number_of_flights' => $airlineDto->getNumberOfFlights(),
         ]);
 
+        $airline->cities()->attach($airlineDto->getEnabledCities());
+
         return $airline;
     }
 }
