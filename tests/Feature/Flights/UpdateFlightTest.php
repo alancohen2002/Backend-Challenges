@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Flight;
 
+use Carbon\Carbon;
 use Database\Factories\FlightFactory;
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Flights\Domain\Models\Flight;
 
 use function Pest\Laravel\putJson;
 use function PHPUnit\Framework\assertEquals;
@@ -31,9 +31,10 @@ describe('flights', function () {
                 'success' => true,
                 'status' => JsonResponse::HTTP_OK,
             ]);
-
-        $flight = Flight::find($flight->id);
-        assertEquals($flight->departure_date->toDateString(), $updatedData['departure_date']);
-        assertEquals($flight->arrival_date->toDateString(), $updatedData['arrival_date']);
+        $departureDate = Carbon::parse($flight->departure_date);
+        $arrivalDate = Carbon::parse($flight->arrival_date);
+            
+        assertEquals($departureDate->toDateString(), $updatedData['departure_date']);
+        assertEquals($arrivalDate->toDateString(), $updatedData['arrival_date']);
     });
 });

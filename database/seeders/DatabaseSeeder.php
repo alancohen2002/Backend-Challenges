@@ -21,9 +21,8 @@ class DatabaseSeeder extends Seeder
         $cities = CityFactory::new()->count(5)->create();
 
         $airlines->each(function ($airline) use ($cities) {
-            $randomCities = $cities->random(rand(1, 3));
-            
-            $airline->cities()->attach($randomCities);
+            $managedCities = $cities->take(2);
+            $airline->cities()->attach($managedCities);
         });
 
         FlightFactory::new()->count(5)->create();

@@ -26,7 +26,7 @@ describe('Flights', function () {
 
         $response = postJson(url('/api/flights'), $requestBody);
 
-        $flight = Flight::find($data->id);
+        $flight = Flight::findOrFail($data->id);
             
         $response
             ->assertCreated()
