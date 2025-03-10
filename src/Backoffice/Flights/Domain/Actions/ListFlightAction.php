@@ -14,6 +14,7 @@ class ListFlightAction
      */
     public function execute(): Paginator
     {
-        return Flight::simplePaginate(10);
+        return Flight::with(['airline', 'departureCity', 'arrivalCity'])
+        ->paginate(10);
     }
 }

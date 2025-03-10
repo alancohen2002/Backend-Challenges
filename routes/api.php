@@ -80,7 +80,7 @@ Route::prefix('airlines')
 Route::prefix('flights')
     ->group(static function () {
         Route::get('/', ListFlightController::class);
-        Route::prefix('{airline}')->group(function () {
+        Route::prefix('{flight}')->group(function () {
             Route::get('/', GetFlightController::class)->withTrashed();
             Route::put('/', UpdateFlightController::class);
             Route::delete('/', DeleteFlightController::class);

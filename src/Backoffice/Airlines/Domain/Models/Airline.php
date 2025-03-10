@@ -39,11 +39,11 @@ class Airline extends Model
     protected $guarded = ['id'];
 
     /**
-     * @return BelongsToMany<City, $this>
+     * @return HasMany<City, $this>
     */
-    public function cities(): BelongsToMany
+    public function cities(): HasMany
     {
-        return $this->belongsToMany(City::class, 'airline_city');
+        return $this->hasMany(City::class, 'airline_city');
     }
 
     /**

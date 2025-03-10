@@ -45,7 +45,13 @@ use Lightit\Backoffice\Cities\Domain\Models\City;
  */
 class Flight extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'airline_id',
+        'departure_city_id',
+        'arrival_city_id',
+        'departure_date',
+        'arrival_date',
+    ];
 
     protected $casts = [
         'departure_date' => 'datetime',

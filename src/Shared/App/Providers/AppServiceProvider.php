@@ -46,5 +46,9 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute($rateLimiter)
                 ->by($request->user()?->id ?: $request->ip());
         });
+
+        if (app()->environment('testing')) {
+            Model::preventLazyLoading(false);
+        }
     }
 }

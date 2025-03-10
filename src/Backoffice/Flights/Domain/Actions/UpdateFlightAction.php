@@ -12,9 +12,11 @@ class UpdateFlightAction
     public function execute(Flight $flight, FlightDto $flightDto): Flight
     {
         $flight->update([
-            'airline' => $flightDto->getAirline(),
-            'departure_city' => $flightDto->getDepartureCity(),
-            'arrival_city' => $flightDto->getArrivalCity(),
+            'airline_id' => $flightDto->getAirline(),
+            'departure_city_id' => $flightDto->getDepartureCity(),
+            'arrival_city_id' => $flightDto->getArrivalCity(),
+            'departure_date' => $flightDto->getDepartureDate(),
+            'arrival_date' => $flightDto->getArrivalDate(),
         ]);
 
         return $flight;
