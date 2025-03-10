@@ -9,6 +9,7 @@ use Database\Factories\AirlineFactory;
 use Database\Factories\CityFactory;
 use Database\Factories\FlightFactory;
 use Illuminate\Http\JsonResponse;
+use Lightit\Backoffice\Flights\Domain\Models\Flight;
 
 use function Pest\Laravel\putJson;
 use function PHPUnit\Framework\assertEquals;
@@ -34,20 +35,7 @@ describe('flights', function () {
 
         $response = putJson(url("/api/flights/{$flight->id}"), $updatedData);
 
-        $jsonContent = $response->getContent();
-
-        if ($jsonContent === false) {
-            throw new \Exception('API response is not a valid JSON.');
-        }
-
-        $retrievedFlight = json_decode($jsonContent);
-
-        if (! isset($retrievedFlight->data)) {
-            throw new \Exception('structure does not contain "data".');
-        }
-        
-        $retrievedFlight = $retrievedFlight->data;
-
+        $retrievedFlight = Flight::findOrFail($flight->id);
         
         $response->assertOk()
             ->assertJson([
