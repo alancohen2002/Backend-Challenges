@@ -16,7 +16,6 @@ use function PHPUnit\Framework\assertEquals;
 describe('Flights', function () {
     /** @see StoreFlightController */
     it('can create a flight successfully', function () {
-
         $data = FlightFactory::new()->createOne();
         $departureCity = CityFactory::new()->createOne();
         $arrivalCity = CityFactory::new()->createOne();
