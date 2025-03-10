@@ -23,7 +23,7 @@ class DepartureCityValidatorRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         /** @var City $city */
-        $city = City::findOrFail($value); 
+        $city = City::findOrFail($value);
 
         $airline = Airline::with('cities')->findOrFail($this->airlineId);
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Flights;
 
+use Database\Factories\AirlineFactory;
+use Database\Factories\CityFactory;
 use Database\Factories\FlightFactory;
 use Illuminate\Http\JsonResponse;
 use Lightit\Backoffice\Flights\App\Controllers\StoreFlightController;
@@ -14,12 +16,20 @@ use function PHPUnit\Framework\assertEquals;
 describe('Flights', function () {
     /** @see StoreFlightController */
     it('can create a flight successfully', function () {
+
         $data = FlightFactory::new()->createOne();
+        $departureCity = CityFactory::new()->createOne();
+        $arrivalCity = CityFactory::new()->createOne();
+        $airline = AirlineFactory::new()->createOne();
+
+        $airline->cities()->attach($departureCity);
+        $airline->cities()->attach($arrivalCity);
+
 
         $requestBody = [
-            'airline' => $data->airline_id,
-            'departure_city' => $data->departure_city_id,
-            'arrival_city' => $data->arrival_city_id,
+            'airline' => $airline->id,
+            'departure_city' => $departureCity->id,
+            'arrival_city' => $arrivalCity->id,
             'departure_date'=> '2024-01-01',
             'arrival_date'=> '2025-06-11',
         ];
