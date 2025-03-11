@@ -14,12 +14,14 @@ class AirlineTransformer extends Transformer
      */
     public function transform(Airline $airline): array
     {
+        Airline::with('cities')->find($airline->id);
+
         return [
             'id' => $airline->id,
             'name' => $airline->name,
             'description' => $airline->description,
-            'number_of_flights' => $airline->number_of_flights,
-            'operating_cities' => $airline->cities->pluck('name'),
+            'number_of_flights' => $airline->flights()->count(),
+            'operating_cities' => $airline->loadMissing('cities')->cities->pluck('name'),
         ];
     }
 }

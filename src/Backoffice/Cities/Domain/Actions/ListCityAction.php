@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Cities\Domain\Actions;
 
-use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\Paginator;
 use Lightit\Backoffice\Cities\Domain\DataTransferObjects\ListCityData;
 use Lightit\Backoffice\Cities\Domain\Models\City;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ListCityAction
 {
@@ -15,25 +18,21 @@ class ListCityAction
      */
     public function execute(ListCityData $requestData): Paginator
     {
-        $sortBy = $requestData->sortBy;
-        $airlineId = $requestData->airlineId;
-        $sortDirection = ! empty($requestData->sortDirection) ? $requestData->sortDirection : 'asc';
+        $query = QueryBuilder::for(City::class)
+            ->allowedFilters([
+                AllowedFilter::callback('airlineId', function (Builder $query, int $airlineId): void {
+                    $query->whereHas('flightsAsDepartureCity', function (Builder $query) use ($airlineId): void {
+                        $query->where('airline_id', $airlineId);
+                    })->orWhereHas('flightsAsArrivalCity', function (Builder $query) use ($airlineId): void {
+                        $query->where('airline_id', $airlineId);
+                    });
+                }),
+            ])
+            ->allowedSorts(['name']);
 
-        $query = City::query();
+        /** @var Paginator<City> $paginator */
+        $paginator = $query->simplePaginate(10);
 
-        if ($sortBy != null) {
-            $query->orderBy($sortBy, $sortDirection);
-        }
-
-        if ($airlineId != null) {
-            $query->whereHas('flightsAsDepartureCity', function ($query) use ($airlineId) {
-                $query->where('airline_id', $airlineId);
-            })
-            ->orWhereHas('flightsAsArrivalCity', function ($query) use ($airlineId) {
-                $query->where('airline_id', $airlineId);
-            });
-        }
-
-        return $query->simplePaginate(10);
+        return $paginator;
     }
 }

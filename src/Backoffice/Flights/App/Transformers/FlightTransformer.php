@@ -16,14 +16,13 @@ class FlightTransformer extends Transformer
      */
     public function transform(Flight $flight): array
     {
-        $departure_city = City::find($flight->departure_city_id);
-        $arrival_city = City::find($flight->arrival_city_id);
+        $flight = Flight::with(['departureCity', 'arrivalCity', 'airline'])->findOrFail($flight->id);
 
         return [
             'id' => $flight->id,
             'airline' => $flight->airline->name,
-            'departure_city' => $departure_city ? $departure_city->name : 'Unknown',
-            'arrival_city' => $arrival_city ? $arrival_city->name : 'Unknown',
+            'departure_city' => $flight->departureCity->name,
+            'arrival_city' => $flight->arrivalCity->name,
             'departure_date' => Carbon::parse($flight->departure_date)->format('Y-m-d H:i:s'),
             'arrival_date' => Carbon::parse($flight->arrival_date)->format('Y-m-d H:i:s'),
         ];

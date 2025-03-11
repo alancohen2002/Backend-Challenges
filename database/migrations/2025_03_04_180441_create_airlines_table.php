@@ -14,7 +14,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description');
-            $table->integer('number_of_flights');
             $table->timestamps();
         });
     }

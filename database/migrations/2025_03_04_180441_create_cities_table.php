@@ -13,8 +13,6 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('number_of_incoming_flights'); 
-            $table->integer('number_of_outgoing_flights');
             $table->timestamps();
         });
     }
