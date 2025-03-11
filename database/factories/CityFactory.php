@@ -17,8 +17,6 @@ class CityFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'number_of_incoming_flights' => $this->faker->numberBetween(0, 100),
-            'number_of_outgoing_flights' => $this->faker->numberBetween(0, 100),
         ];
     }
 }

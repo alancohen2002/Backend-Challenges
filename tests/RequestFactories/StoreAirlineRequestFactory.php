@@ -13,7 +13,6 @@ class StoreAirlineRequestFactory extends RequestFactory
         return [
             'name' => $this->faker->company,
             'description' => $this->faker->company,
-            'number_of_flights' => $this->faker->numberBetween(1, 100),
         ];
     }
 }
