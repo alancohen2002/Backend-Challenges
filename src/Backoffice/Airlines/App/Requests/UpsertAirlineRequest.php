@@ -21,8 +21,7 @@ class UpsertAirlineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::NAME => ['required', Rule::unique('airlines')],
-            self::DESCRIPTION => ['required', 'string'],
+            self::NAME => ['required', 'string', 'max:100', Rule::unique('airlines')->ignore($this->route('airline'))],            self::DESCRIPTION => ['required', 'string'],
             self::NUMBER_OF_FLIGHTS => ['numeric'],
             self::ENABLED_CITIES => ['required', 'array'],
             self::ENABLED_CITIES . '.*' => ['exists:cities,id'],
