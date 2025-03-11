@@ -24,9 +24,8 @@ class StoreFlightAction
         if (! $airline->cities->contains($arrivalCity)) {
             throw new \Exception('The airline does not operate in the arrival city');
         }
-        
-        return Flight::create([
-            'airline_id' => $flightDto->getAirline(),
+
+        return $airline->flights()->create([
             'departure_city_id' => $flightDto->getDepartureCity(),
             'arrival_city_id' => $flightDto->getArrivalCity(),
             'departure_date' => $flightDto->getDepartureDate(),

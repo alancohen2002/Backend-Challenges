@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Cities\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 use Lightit\Backoffice\Cities\Domain\DataTransferObjects\ListCityData;
+use Lightit\Shared\App\Enums\OrderDirectionEnum;
 
 class ListCitiesRequest extends FormRequest
 {
@@ -20,8 +22,7 @@ class ListCitiesRequest extends FormRequest
         return [
             self::SORT_BY => ['nullable', 'string', 'in:name,id'],
             self::AIRLINE_ID => ['nullable', 'integer', 'exists:airlines,id'],
-            self::ORDER_DIRECTION => ['nullable', 'string', 'in:asc,desc'],
-        ];
+            self::ORDER_DIRECTION => ['nullable', 'string', new Enum(OrderDirectionEnum::class)]];
     }
 
     public function toDto(): ListCityData
