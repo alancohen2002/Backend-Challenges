@@ -25,6 +25,12 @@ use Lightit\Backoffice\Flights\App\Controllers\CreateFlightController;
 use Lightit\Backoffice\Flights\App\Controllers\UpdateFlightController;
 use Lightit\Backoffice\Flights\App\Controllers\DeleteFlightController;
 
+use Lightit\Backoffice\Employees\App\Controllers\CreateEmployeeController;
+use Lightit\Backoffice\Employees\App\Controllers\ListEmployeeController;
+use Lightit\Backoffice\Tasks\App\Controllers\CreateTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\UpdateTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\ListTaskController;
+use Lightit\Backoffice\Tasks\App\Controllers\GetTaskController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,10 +41,6 @@ use Lightit\Backoffice\Flights\App\Controllers\DeleteFlightController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +88,17 @@ Route::prefix('flights')
             Route::delete('/', DeleteFlightController::class);
         });        
         Route::post('/', CreateFlightController::class);   
+    });
+Route::prefix('employees')->group(function () {
+        Route::post('/', CreateEmployeeController::class)->name('employees.create');
+        Route::get('/', ListEmployeeController::class)->name('employees.list');
+    });
+    
+Route::prefix('tasks')->group(function () {
+        Route::post('/', CreateTaskController::class)->name('tasks.create');
+        Route::get('/', ListTaskController::class)->name('tasks.list');
+        Route::prefix('{task}')->group(function () { 
+            Route::get('/', GetTaskController::class)->name('tasks.get');
+            Route::put('/', UpdateTaskController::class)->name('tasks.put');
+        });
     });
