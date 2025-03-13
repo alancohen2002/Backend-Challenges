@@ -16,14 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $airlines = AirlineFactory::new()->count(5)->create();
-
         $cities = CityFactory::new()->count(5)->create();
 
-        $airlines->each(function ($airline) use ($cities) {
-            $managedCities = $cities->take(2);
-            $airline->cities()->attach($managedCities);
-        });
+        AirlineFactory::new()
+            ->count(10)
+            ->recycle($cities)
+            ->withCities(4)
+            ->create();
 
         FlightFactory::new()->count(5)->create();
     }

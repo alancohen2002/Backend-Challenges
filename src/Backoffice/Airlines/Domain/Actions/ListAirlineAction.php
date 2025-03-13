@@ -21,7 +21,7 @@ class ListAirlineAction
     {
         $query = QueryBuilder::for(Airline::class)
             ->allowedFilters([
-                AllowedFilter::callback('numberOfActiveFlights', function (Builder $query, $value): void {
+                AllowedFilter::callback('number_of_active_flights', function (Builder $query, $value): void {
                     $query->join('flights', 'airlines.id', '=', 'flights.airline_id')
                         ->where('flights.departure_date', '<', Carbon::now())
                         ->where('flights.arrival_date', '>', Carbon::now())
@@ -30,7 +30,7 @@ class ListAirlineAction
                         ->select('airlines.*');
                 }),
 
-                AllowedFilter::callback('cityId', function (Builder $query, int $value): void {
+                AllowedFilter::callback('city_id', function (Builder $query, int $value): void {
                     $query->whereHas('flights', function (Builder $flights) use ($value): void {
                         $flights->where('flights.departure_date', '<', Carbon::now())
                                 ->where('flights.arrival_date', '>', Carbon::now())

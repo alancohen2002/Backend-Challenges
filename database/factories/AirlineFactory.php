@@ -16,7 +16,16 @@ class AirlineFactory extends Factory
     {
         return [
             'name' => $this->faker->company,
-            'description' => $this->faker->company, 
+            'description' => $this->faker->company,
         ];
+    }
+
+    public function withCities(int $count = 3): self
+    {
+        return $this->afterCreating(function (Airline $airline) use ($count) {
+            $airline->cities()->attach(
+                CityFactory::new()->count($count)->createMany()
+            );
+        });
     }
 }

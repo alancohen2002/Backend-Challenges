@@ -21,6 +21,6 @@ class UpdateAirlineController
 
         return responder()
             ->success($airline, AirlineTransformer::class)
-            ->respond(JsonResponse::HTTP_OK);
+            ->respond();
     }
 }
