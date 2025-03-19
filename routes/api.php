@@ -6,6 +6,25 @@ use Lightit\Backoffice\Users\App\Controllers\DeleteUserController;
 use Lightit\Backoffice\Users\App\Controllers\GetUserController;
 use Lightit\Backoffice\Users\App\Controllers\ListUserController;
 use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
+
+use Lightit\Backoffice\Cities\App\Controllers\ListCityController;
+use Lightit\Backoffice\Cities\App\Controllers\GetCityController;
+use Lightit\Backoffice\Cities\App\Controllers\CreateCityController;
+use Lightit\Backoffice\Cities\App\Controllers\UpdateCityController;
+use Lightit\Backoffice\Cities\App\Controllers\DeleteCityController;
+
+use Lightit\Backoffice\Airlines\App\Controllers\ListAirlineController;
+use Lightit\Backoffice\Airlines\App\Controllers\GetAirlineController;
+use Lightit\Backoffice\Airlines\App\Controllers\CreateAirlineController;
+use Lightit\Backoffice\Airlines\App\Controllers\UpdateAirlineController;
+use Lightit\Backoffice\Airlines\App\Controllers\DeleteAirlineController;
+
+use Lightit\Backoffice\Flights\App\Controllers\ListFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\GetFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\CreateFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\UpdateFlightController;
+use Lightit\Backoffice\Flights\App\Controllers\DeleteFlightController;
+
 use Lightit\Backoffice\Employees\App\Controllers\CreateEmployeeController;
 use Lightit\Backoffice\Employees\App\Controllers\ListEmployeeController;
 use Lightit\Backoffice\Tasks\App\Controllers\CreateTaskController;
@@ -37,6 +56,39 @@ Route::prefix('users')
         Route::delete('/{user}', DeleteUserController::class);
     });
 
+
+Route::prefix('cities')
+    ->group(static function () {
+        Route::get('/', ListCityController::class);
+        Route::prefix('{city}')->group(function () { 
+            Route::get('/', GetCityController::class)->withTrashed();
+            Route::put('/', UpdateCityController::class);
+            Route::delete('/', DeleteCityController::class);
+        });
+        Route::post('/', CreateCityController::class);
+    });
+
+Route::prefix('airlines')
+    ->group(static function () {
+        Route::get('/', ListAirlineController::class);
+        Route::prefix('{airline}')->group(function () {
+            Route::get('/', GetAirlineController::class)->withTrashed();
+            Route::put('/', UpdateAirlineController::class);
+            Route::delete('/', DeleteAirlineController::class);
+        });
+        Route::post('/', CreateAirlineController::class);    
+    });
+
+Route::prefix('flights')
+    ->group(static function () {
+        Route::get('/', ListFlightController::class);
+        Route::prefix('{flight}')->group(function () {
+            Route::get('/', GetFlightController::class)->withTrashed();
+            Route::put('/', UpdateFlightController::class);
+            Route::delete('/', DeleteFlightController::class);
+        });        
+        Route::post('/', CreateFlightController::class);   
+    });
 Route::prefix('employees')->group(function () {
         Route::post('/', CreateEmployeeController::class)->name('employees.create');
         Route::get('/', ListEmployeeController::class)->name('employees.list');
